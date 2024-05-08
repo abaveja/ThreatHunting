@@ -1,4 +1,5 @@
-**Usecase 1 - Detecting suspicious activities on existing accounts** - Keep an eye out for user accounts used to create new guest accounts with privileged roles in your tenant or any activation of the ‘Elevate Access’ operation.  
+**Usecase 1 - Detecting suspicious activities on existing accounts** - Keep an eye out for user accounts used to create new guest accounts with privileged roles in your tenant or any activation of the ‘Elevate Access’ operation. 
+
 **Pre-requisite**: Microsoft CloudApps Activity log keeps track of all activities by external user accounts with administrative privileges
 1) Azure connector for Azure Resources Management (ARM) events - https://docs.microsoft.com/en-us/defender-cloud-apps/connect-azure
 2) Office 365 connector for AAD (Azure Active Directory) management events - https://learn.microsoft.com/en-us/defender-cloud-apps/protect-office-365#connect-office-365-to-microsoft-cloud-app-security
@@ -37,7 +38,7 @@ CloudAppEvents
 | where AccountObjectId in (newGuestAccounts)
 ```
 
-**//Hunt for Azure activities from high-risk users **
+**//Hunt for Azure activities from high-risk users**
 
 ```
 let riskyAzureSignIns = ( 
