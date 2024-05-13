@@ -1,0 +1,30 @@
+
+//GP link modified
+'''
+SecurityEvent
+| parse EventData with * '"ObjectClass">' ObjectClass '<' *
+| parse EventData with * '"ObjectDN">' ObjectDN '<' 
+| parse EventData with * '"AttributeLDAPDisplayName">' AttributeLDAPDisplayName '<' *
+| parse EventData with * '"AttributeValue">' AttributeValue '<' *
+| where EventID == 5136
+| where ObjectClass == 'organizationalUnit'
+| where AttributeLDAPDisplayName == 'gPLink'
+// | where ObjectDN contains 'Domain Controllers'
+| project TimeGenerated, Activity, Computer, SubjectAccount, ObjectDN, AttributeValue 
+| sort by TimeGenerated desc 
+ '''
+
+
+//GPO changed
+'''
+SecurityEvent
+| parse EventData with * '"ObjectClass">' ObjectClass '<' *
+| parse EventData with * '"ObjectDN">' ObjectDN '<' *
+| parse EventData with * '"AttributeLDAPDisplayName">' AttributeLDAPDisplayName '<' *
+| parse EventData with * '"AttributeValue">' AttributeValue '<' *
+| where EventID == 5136
+| where ObjectClass == 'groupPolicyContainer'
+// | where ObjectDN contains 'Domain Controllers'
+| project TimeGenerated, Activity, Computer, SubjectAccount, ObjectDN, AttributeValue 
+| sort by TimeGenerated desc 
+'''
